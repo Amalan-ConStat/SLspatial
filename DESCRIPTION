@@ -24,6 +24,7 @@ LazyData: true
 Depends: R (>= 4.1.0)
 Imports: sf
 Suggests:
+    covr,
     dplyr,
     ggplot2,
     knitr,
