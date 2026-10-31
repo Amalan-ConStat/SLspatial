@@ -1,21 +1,5 @@
 # SLspatial
 
-[![](http://cranlogs.r-pkg.org/badges/grand-total/SLspatial?color=green)](https://cran.r-project.org/package=SLspatial)
-[![](http://cranlogs.r-pkg.org/badges/last-month/SLspatial?color=green)](https://cran.r-project.org/package=SLspatial)
-[![](http://cranlogs.r-pkg.org/badges/last-week/SLspatial?color=green)](https://cran.r-project.org/package=SLspatial)
-
-[![Project Status: Active - The project has reached a stable, usable
-state and is being actively
-developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![GitHub
-issues](https://img.shields.io/github/issues/Amalan-ConStat/SLspatial.svg?style=popout)](https://github.com/Amalan-ConStat/SLspatial/issues)
-
-[![](https://img.shields.io/github/languages/code-size/Amalan-ConStat/SLspatial.svg)](https://github.com/Amalan-ConStat/SLspatial)
-
-[![MIT
-license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
-
 **SLspatial** provides spatial boundary datasets for Sri Lanka as simple
 features (`sf`) objects. The package supports mapping, spatial analysis,
 and integration of administrative and electoral geographic data. It
@@ -398,7 +382,36 @@ st_crs(SLElectoralDistricts)
 #>             ANGLEUNIT["degree",0.0174532925199433]],
 #>     ID["EPSG",4326]]
 st_crs(SLElectorate)
-#> Coordinate Reference System: NA
+#> Coordinate Reference System:
+#>   User input: EPSG:4326 
+#>   wkt:
+#> GEOGCRS["WGS 84",
+#>     ENSEMBLE["World Geodetic System 1984 ensemble",
+#>         MEMBER["World Geodetic System 1984 (Transit)"],
+#>         MEMBER["World Geodetic System 1984 (G730)"],
+#>         MEMBER["World Geodetic System 1984 (G873)"],
+#>         MEMBER["World Geodetic System 1984 (G1150)"],
+#>         MEMBER["World Geodetic System 1984 (G1674)"],
+#>         MEMBER["World Geodetic System 1984 (G1762)"],
+#>         MEMBER["World Geodetic System 1984 (G2139)"],
+#>         MEMBER["World Geodetic System 1984 (G2296)"],
+#>         ELLIPSOID["WGS 84",6378137,298.257223563,
+#>             LENGTHUNIT["metre",1]],
+#>         ENSEMBLEACCURACY[2.0]],
+#>     PRIMEM["Greenwich",0,
+#>         ANGLEUNIT["degree",0.0174532925199433]],
+#>     CS[ellipsoidal,2],
+#>         AXIS["geodetic latitude (Lat)",north,
+#>             ORDER[1],
+#>             ANGLEUNIT["degree",0.0174532925199433]],
+#>         AXIS["geodetic longitude (Lon)",east,
+#>             ORDER[2],
+#>             ANGLEUNIT["degree",0.0174532925199433]],
+#>     USAGE[
+#>         SCOPE["Horizontal component of 3D system."],
+#>         AREA["World."],
+#>         BBOX[-90,-180,90,180]],
+#>     ID["EPSG",4326]]
 st_crs(SLAdminDivisions)
 #> Coordinate Reference System:
 #>   User input: WGS 84 
@@ -460,8 +473,6 @@ through the [GitHub issue
 tracker](https://github.com/Amalan-ConStat/SLspatial/issues).
 
 #### Thank You
-
-[![Twitter](https://img.shields.io/twitter/url/https/github.com/Amalan-ConStat/SLspatial.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2FAmalan-ConStat%2FSLspatial)
 
 [![](https://img.shields.io/badge/LinkedIn-Amalan%20Mahendran-black.svg?style=flat)](https://www.linkedin.com/in/amalan-mahendran-72b86b37/)
 [![](https://img.shields.io/badge/Research%20Gate-Amalan%20Mahendran-black.svg?style=flat)](https://www.researchgate.net/profile/Amalan_Mahendran)
