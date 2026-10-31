@@ -1,3 +1,6 @@
+#' @import sf
+NULL
+
 #' Sri Lanka Country Boundary
 #'
 #' Country boundary polygons for Sri Lanka, without internal

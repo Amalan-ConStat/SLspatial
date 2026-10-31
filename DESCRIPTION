@@ -27,6 +27,8 @@ Suggests:
     dplyr,
     ggplot2,
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/roxygen2/version: 8.1.1
+Config/testthat/edition: 3
