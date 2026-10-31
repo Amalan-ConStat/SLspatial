@@ -14,9 +14,6 @@ library(badger)
 
 <!-- badges: start -->
 
-`r badge_cran_release("SLspatial")`
-`r badge_cran_checks("SLspatial")`
-`r badge_runiverse()`
 `r badge_cran_download("SLspatial", "grand-total", "green")`
 `r badge_cran_download("SLspatial", "last-month", "green")`
 `r badge_cran_download("SLspatial", "last-week", "green")`
@@ -214,8 +211,6 @@ Spatial boundaries and administrative arrangements can change over time. The inc
 For dataset descriptions, use `?SLBoundary`, `?SLAdministrativeDistricts`, `?SLElectoralDistricts`, `?SLElectorate`, and `?SLAdminDivisions` after loading the package. Issues and suggestions can be submitted through the [GitHub issue tracker](https://github.com/Amalan-ConStat/SLspatial/issues).
 
 #### Thank You
-
-[![Twitter](https://img.shields.io/twitter/url/https/github.com/Amalan-ConStat/SLspatial.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2FAmalan-ConStat%2FSLspatial)
 
 [ ![](https://img.shields.io/badge/LinkedIn-Amalan%20Mahendran-black.svg?style=flat) ]( https://www.linkedin.com/in/amalan-mahendran-72b86b37/)
 [ ![](https://img.shields.io/badge/Research%20Gate-Amalan%20Mahendran-black.svg?style=flat) ]( https://www.researchgate.net/profile/Amalan_Mahendran )
