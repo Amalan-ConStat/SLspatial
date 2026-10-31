@@ -5,6 +5,11 @@
 
 <!-- badges: start -->
 
+[![](https://www.r-pkg.org/badges/version/SLspatial)](https://cran.r-project.org/package=SLspatial)
+[![CRAN
+checks](https://badges.cranchecks.info/summary/SLspatial.svg)](https://cran.r-project.org/web/checks/check_results_SLspatial.html)
+[![r-universe status
+badge](https://Amalan-ConStat.r-universe.dev/badges/SLspatial)](https://Amalan-ConStat.r-universe.dev/SLspatial)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/SLspatial?color=green)](https://cran.r-project.org/package=SLspatial)
 [![](http://cranlogs.r-pkg.org/badges/last-month/SLspatial?color=green)](https://cran.r-project.org/package=SLspatial)
 [![](http://cranlogs.r-pkg.org/badges/last-week/SLspatial?color=green)](https://cran.r-project.org/package=SLspatial)

@@ -14,6 +14,9 @@ library(badger)
 
 <!-- badges: start -->
 
+`r badge_cran_release("SLspatial")`
+`r badge_cran_checks("SLspatial")`
+`r badge_runiverse()`
 `r badge_cran_download("SLspatial", "grand-total", "green")`
 `r badge_cran_download("SLspatial", "last-month", "green")`
 `r badge_cran_download("SLspatial", "last-week", "green")`
