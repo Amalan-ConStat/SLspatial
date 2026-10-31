@@ -1,0 +1,78 @@
+
+url: https://amalan-constat.github.io/SLspatial/
+
+authors:
+  Amalan Mahendran:
+    href: https://www.amalan-mahendran.com
+
+template:
+  bootstrap: 5
+  bootswatch: flatly
+
+home:
+  title: "SLspatial"
+  description: >
+    Spatial datasets for Sri Lanka, including country,
+    administrative district, electoral district, polling
+    division, and administrative division boundaries.
+
+navbar:
+  structure:
+    left: [intro, reference, news]
+    right: [website, x, bluesky, github, linkedin, scholar]
+
+  components:
+    intro:
+      text: Home
+      href: index.html
+
+    reference:
+      text: Reference
+      href: reference/index.html
+
+    website:
+      icon: fa-user-circle
+      aria-label: Personal website
+      href: https://www.amalan-mahendran.com
+    x:
+      icon: fa-hashtag
+      aria-label: X
+      href: https://x.com/Amalan_Con_Stat
+    bluesky:
+      text: Bluesky
+      href: https://bsky.app/profile/amalanconstat.bsky.social
+    github:
+      icon: fa-github
+      aria-label: GitHub
+      href: https://github.com/Amalan-ConStat
+    linkedin:
+      icon: fa-linkedin
+      aria-label: LinkedIn
+      href: https://www.linkedin.com/in/amalan-mahendran-72b86b37/
+    scholar:
+      icon: fa-google
+      aria-label: Google Scholar
+      href: https://scholar.google.com/citations?user=fj4E-GMAAAAJ&hl=en
+
+reference:
+  - title: "Country Boundary"
+    desc: "National boundary of Sri Lanka."
+    contents:
+      - SLBoundary
+
+  - title: "Administrative Boundaries"
+    desc: "Administrative districts and divisions."
+    contents:
+      - SLAdministrativeDistricts
+      - SLAdminDivisions
+
+  - title: "Electoral Boundaries"
+    desc: "Electoral districts and polling divisions."
+    contents:
+      - SLElectoralDistricts
+      - SLElectorate
+
+footer:
+  structure:
+    left: developed_by
+    right: built_with
