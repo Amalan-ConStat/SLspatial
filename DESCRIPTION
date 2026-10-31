@@ -16,13 +16,13 @@ Description: Provides spatial datasets representing administrative and
     classifications. Spatial data are provided as simple features ('sf')
     objects to support geographical visualisation, spatial analysis,
     and integration with electoral and administrative datasets.
+URL: https://github.com/Amalan-ConStat/SLspatial,https://amalan-constat.github.io/SLspatial/
+BugReports: https://github.com/Amalan-ConStat/SLspatial/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Depends:
-    R (>= 4.1.0)
-Imports:
-    sf
+Depends: R (>= 4.1.0)
+Imports: sf
 Suggests:
     dplyr,
     ggplot2,
