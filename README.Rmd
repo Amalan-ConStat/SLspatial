@@ -1,0 +1,226 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,comment = "#>",collapse = TRUE, fig.retina=2, fig.path = "man/figures/",
+                      out.width = "100%",warning = FALSE,message = FALSE)
+library(badger)
+```
+
+# SLspatial <img src="man/figures/logo.png" align="right" alt="SLspatial" width="150" />
+
+<!-- badges: start -->
+
+`r badge_cran_release("SLspatial")`
+`r badge_cran_checks("SLspatial")`
+`r badge_runiverse()`
+
+`r badge_cran_download("SLspatial", "grand-total", "green")`
+`r badge_cran_download("SLspatial", "last-month", "green")`
+`r badge_cran_download("SLspatial", "last-week", "green")`
+
+`r badge_repostatus("Active")`
+`r badge_lifecycle("stable")`
+[![GitHub issues](https://img.shields.io/github/issues/Amalan-ConStat/SLspatial.svg?style=popout)](https://github.com/Amalan-ConStat/SLspatial/issues)
+
+[![Codecov test coverage](https://codecov.io/gh/Amalan-ConStat/SLspatial/branch/main/graph/badge.svg)](https://app.codecov.io/gh/Amalan-ConStat/SLspatial?branch=main)
+`r badge_codefactor("Amalan-ConStat/SLspatial")`
+`r badge_code_size("Amalan-ConStat/SLspatial")`
+
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+<!-- badges: end -->
+
+**SLspatial** provides spatial boundary datasets for Sri Lanka as simple features (`sf`) objects. The package supports mapping, spatial analysis, and integration of administrative and electoral geographic data. It includes the country boundary, administrative districts, electoral districts, electoral polling divisions, and administrative divisions. The datasets support analysis at multiple geographic levels while distinguishing administrative from electoral geography.
+
+## Installation
+
+Install the development version from GitHub:
+
+```{r installation, eval=FALSE}
+# install.packages("remotes")
+remotes::install_github("Amalan-ConStat/SLspatial")
+```
+
+## Available datasets
+
+| Dataset | Features | Coverage | Key attributes |
+|:--|--:|:--|:--|
+| `SLBoundary` | 1 | Sri Lanka country boundary | `Country`, `ISO2`, `ISO3` |
+| `SLAdministrativeDistricts` | 25 | Administrative districts | `SourceID`, `SourceName`, `District` |
+| `SLElectoralDistricts` | 22 | Electoral districts | `District` |
+| `SLElectorate` | 160 | Electoral polling divisions across 22 electoral districts | `ElecCode`, `District`, `Electorate`, `OrigName` |
+| `SLAdminDivisions` | 323 | Administrative divisions across 25 administrative districts | `DistCode`, `District`, `EDistrict`, `DivCode`, `Division` |
+
+All five datasets are `sf` objects with a `geometry` column. Counts reflect the source boundary versions used in the package and should not be interpreted as a statement about current official administrative boundaries.
+
+### `SLBoundary`
+
+A single-feature country boundary, with country name and ISO two- and three-letter codes. The geometry is a `MULTIPOLYGON` in WGS84 (EPSG:4326).
+
+### `SLAdministrativeDistricts`
+
+The 25 administrative district polygons. `SourceID` and `SourceName` preserve identifiers and names from the source; `District` uses election-aligned labels for selected districts (such as `Digamadulla` for Ampara). **The geometry remains administrative:** Kilinochchi and Jaffna, and the three administrative districts associated with Vanni, remain separate features.
+
+### `SLElectoralDistricts`
+
+The 22 electoral district polygons, derived from `SLAdministrativeDistricts`. Jaffna and Kilinochchi are combined into the Jaffna electoral district; Mannar, Mullaitivu, and Vavuniya are combined into Vanni. The remaining districts retain their administrative boundaries. This is a **derived layer**, not an independently sourced official electoral-boundary file.
+
+### `SLElectorate`
+
+The 160 electorate (polling division) polygons, with `ElecCode`, `District`, `Electorate`, and `OrigName`. Names were harmonised with the 2024 presidential election data where possible. Three names were manually assigned rather than confirmed through an exact election-data match.
+
+### `SLAdminDivisions`
+
+The 323 administrative division polygons, with `DistCode`, `District`, `EDistrict`, `DivCode`, and `Division`. `District` refers to the administrative district; `EDistrict` is the corresponding electoral district label, allowing aggregation or grouping by either geography.
+
+**Administrative districts and electoral districts are not interchangeable.** Use `SLElectoralDistricts` for electoral district geometry and `SLAdministrativeDistricts` for administrative district geometry. In particular, avoid interpreting the election-aligned `District` labels in `SLAdministrativeDistricts` as meaning that the polygons themselves have been merged.
+
+## Getting started
+
+```{r load-package}
+library(SLspatial)
+library(sf)
+library(dplyr)
+library(ggplot2)
+
+# Inspect the datasets
+lapply(
+  list(SLBoundary = SLBoundary,
+       SLAdministrativeDistricts = SLAdministrativeDistricts,
+       SLElectoralDistricts = SLElectoralDistricts,
+       SLElectorate = SLElectorate,
+       SLAdminDivisions = SLAdminDivisions),
+  nrow
+)
+
+head(st_drop_geometry(SLElectorate))
+head(st_drop_geometry(SLAdminDivisions))
+```
+
+## Mapping the country and district boundaries
+
+Plot the national boundary:
+
+```{r map-country, fig.width=7, fig.height=8}
+ggplot(SLBoundary) +
+  geom_sf(fill = "lightblue", colour = "grey30", linewidth = 0.3) +
+  coord_sf(datum = NA) +
+  theme_minimal() +
+  labs(title = "Sri Lanka: Country Boundary")
+```
+
+Plot the 25 administrative districts:
+
+```{r map-administrative-districts, fig.width=8, fig.height=9}
+ggplot(SLAdministrativeDistricts) +
+  geom_sf(fill = "lightblue", colour = "grey30", linewidth = 0.3) +
+  coord_sf(datum = NA) +
+  theme_minimal() +
+  labs(title = "Sri Lanka: 25 Administrative Districts")
+```
+
+Plot the 22 derived electoral districts:
+
+```{r map-electoral-district-boundaries, fig.width=8, fig.height=9}
+ggplot(SLElectoralDistricts) +
+  geom_sf(fill = "lightblue", colour = "grey30", linewidth = 0.3) +
+  coord_sf(datum = NA) +
+  theme_minimal() +
+  labs(title = "Sri Lanka: 22 Electoral Districts")
+```
+
+## Mapping electoral polling divisions
+
+```{r map-electorates, fig.width=8, fig.height=9}
+ggplot(SLElectorate) +
+  geom_sf(fill = "lightblue", colour = "grey35", linewidth = 0.15) +
+  coord_sf(datum = NA) +
+  theme_minimal() +
+  labs(title = "Sri Lanka: Electoral Polling Divisions")
+```
+
+```{r map-electoral-districts, fig.width=9, fig.height=9}
+ggplot(SLElectorate) +
+  geom_sf(aes(fill = District), colour = "white", linewidth = 0.12) +
+  coord_sf(datum = NA) +
+  theme_minimal() +
+  theme(legend.position = "right") +
+  labs(title = "Sri Lanka: Polling Divisions by Electoral District",
+       fill = "Electoral district")
+```
+
+## Mapping administrative divisions
+
+```{r map-administrative-divisions, fig.width=8, fig.height=9}
+ggplot(SLAdminDivisions) +
+  geom_sf(fill = "lightblue", colour = "grey35", linewidth = 0.12) +
+  coord_sf(datum = NA) +
+  theme_minimal() +
+  labs(title = "Sri Lanka: Administrative Divisions")
+```
+
+## Exploring administrative and electoral districts
+
+Count administrative divisions within each administrative district:
+
+```{r administrative-summary}
+SLAdminDivisions |>
+  st_drop_geometry() |>
+  count(District, name = "AdministrativeDivisions") |>
+  arrange(District)
+```
+
+Examine the correspondence between administrative and electoral districts:
+
+```{r district-crosswalk}
+SLAdminDivisions |>
+  st_drop_geometry() |>
+  distinct(District, EDistrict) |>
+  arrange(EDistrict, District)
+```
+
+Count administrative divisions within each electoral district:
+
+```{r electoral-summary}
+SLAdminDivisions |>
+  st_drop_geometry() |>
+  count(EDistrict, name = "AdministrativeDivisions") |>
+  arrange(EDistrict)
+```
+
+## Coordinate reference systems and spatial operations
+
+The datasets retain their source geometries and coordinate reference systems. Check the CRS before combining layers or calculating distances and areas. Transform both layers to an appropriate common CRS when performing spatial operations.
+
+```{r spatial-properties}
+st_crs(SLBoundary)
+st_crs(SLAdministrativeDistricts)
+st_crs(SLElectoralDistricts)
+st_crs(SLElectorate)
+st_crs(SLAdminDivisions)
+st_bbox(SLBoundary)
+```
+
+## Data sources and limitations
+
+- **Electoral polling division boundaries:** [nuuuwan/sl-topojson](https://github.com/nuuuwan/sl-topojson), using the polling division TopoJSON dated 20 November 2020.
+- **Country and administrative district boundaries:** Source administrative shapefiles used to prepare `SLBoundary` and `SLAdministrativeDistricts`; check the associated source metadata for version and licence.
+- **Electoral district boundaries:** Derived from `SLAdministrativeDistricts` by merging administrative polygons into 22 electoral districts.
+- **Administrative division boundaries:** [GADM](https://gadm.org/), from the source `LKA_adm2.shp` shapefile.
+- **Electorate naming reference:** The 2024 presidential election dataset from [`SLPresElection`](https://github.com/Amalan-ConStat/SLPresElection).
+
+Spatial boundaries and administrative arrangements can change over time. The included geometries should not be assumed to reproduce historical electoral or administrative boundaries for every election year. Users should verify source licensing, attribution requirements, and suitability for their intended use.
+
+## Documentation and contributing
+
+For dataset descriptions, use `?SLBoundary`, `?SLAdministrativeDistricts`, `?SLElectoralDistricts`, `?SLElectorate`, and `?SLAdminDivisions` after loading the package. Issues and suggestions can be submitted through the [GitHub issue tracker](https://github.com/Amalan-ConStat/SLspatial/issues).
+
+#### Thank You
+
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/Amalan-ConStat/SLspatial.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2FAmalan-ConStat%2FSLspatial)
+
+[ ![](https://img.shields.io/badge/LinkedIn-Amalan%20Mahendran-black.svg?style=flat) ]( https://www.linkedin.com/in/amalan-mahendran-72b86b37/)
+[ ![](https://img.shields.io/badge/Research%20Gate-Amalan%20Mahendran-black.svg?style=flat) ]( https://www.researchgate.net/profile/Amalan_Mahendran )

@@ -1,0 +1,32 @@
+Package: SLspatial
+Type: Package
+Title: Spatial Data for Sri Lanka
+Version: 0.1.0
+Authors@R: c(
+    person(
+      given = "Amalan",
+      family = "Mahendran",
+      role = c("aut", "cre"),
+      email = "amalan0595@gmail.com"
+    )
+  )
+Description: Provides spatial datasets representing administrative and
+    electoral boundaries in Sri Lanka. The package includes administrative
+    divisions, electoral polling divisions, and their associated district
+    classifications. Spatial data are provided as simple features ('sf')
+    objects to support geographical visualisation, spatial analysis,
+    and integration with electoral and administrative datasets.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends:
+    R (>= 4.1.0)
+Imports:
+    sf
+Suggests:
+    dplyr,
+    ggplot2,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+Config/roxygen2/version: 8.1.1
